@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
-Summary:	String internment library
+Summary:	Library for building efficient parsers
 Name:		libparserutils
 Version:	0.1.2
 Release:	1
