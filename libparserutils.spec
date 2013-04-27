@@ -10,7 +10,7 @@ License:	MIT
 Group:		Libraries
 Source0:	http://download.netsurf-browser.org/libs/releases/%{name}-%{version}-src.tar.gz
 # Source0-md5:	11c2b4ff17406b57dcb718d4fad022bb
-Patch0: lib.patch
+Patch0:		lib.patch
 URL:		http://www.netsurf-browser.org/projects/libparserutils/
 BuildRequires:	netsurf-buildsystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -94,16 +94,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libparserutils.so.*.*.*
+%ghost %{_libdir}/libparserutils.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/libparserutils.so
 %{_includedir}/parserutils
-%{_pkgconfigdir}/*pc
+%{_pkgconfigdir}/libparserutils.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libparserutils.a
 %endif
+
