@@ -1,0 +1,18 @@
+--- libparserutils-0.1.2/Makefile~	2013-04-19 21:06:57.000000000 +0300
++++ libparserutils-0.1.2/Makefile	2013-04-27 16:34:18.203838178 +0300
+@@ -32,6 +32,7 @@
+ include $(NSBUILD)/Makefile.top
+ 
+ # Extra installation rules
++lib := lib
+ Is := include/parserutils
+ I := /include/parserutils
+ INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):$(Is)/errors.h;$(Is)/functypes.h;$(Is)/parserutils.h;$(Is)/types.h
+@@ -48,5 +49,5 @@
+ I := /include/parserutils/utils
+ INSTALL_ITEMS := $(INSTALL_ITEMS) $(I):$(Is)/buffer.h;$(Is)/stack.h;$(Is)/vector.h
+ 
+-INSTALL_ITEMS := $(INSTALL_ITEMS) /lib/pkgconfig:lib$(COMPONENT).pc.in
+-INSTALL_ITEMS := $(INSTALL_ITEMS) /lib:$(OUTPUT)
++INSTALL_ITEMS := $(INSTALL_ITEMS) /$(lib)/pkgconfig:lib$(COMPONENT).pc.in
++INSTALL_ITEMS := $(INSTALL_ITEMS) /$(lib):$(OUTPUT)

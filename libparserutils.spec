@@ -1,7 +1,7 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	Library for building efficient parsers
 Name:		libparserutils
 Version:	0.1.2
@@ -10,6 +10,7 @@ License:	MIT
 Group:		Libraries
 Source0:	http://download.netsurf-browser.org/libs/releases/%{name}-%{version}-src.tar.gz
 # Source0-md5:	11c2b4ff17406b57dcb718d4fad022bb
+Patch0: lib.patch
 URL:		http://www.netsurf-browser.org/projects/libparserutils/
 BuildRequires:	netsurf-buildsystem
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -20,27 +21,15 @@ C. It was developed as part of the NetSurf project and is available
 for use by other software under the MIT licence.
 
 Features:
-
-* No mandatory dependencies (iconv() implementation optional
-for enhanced charset support)
-* A number of built-in character set converters
-* Mapping of character set names to/from MIB enum values
-* UTF-8 and UTF-16 (host endian) support functions
-* Various simple data structures (resizeable buffer, stack, vector)
-* A UTF-8 input stream
-* Simple C API
-* Portable
-* Shared library
-
-Charset support
-
-LibParserUtils has the following built-in charset converters.
-
-* UTF-8
-* UTF-16 (platform-native endian)
-* ISO-8859-n
-* Windows-125n
-* US-ASCII
+- No mandatory dependencies (iconv() implementation optional for
+  enhanced charset support)
+- A number of built-in character set converters
+- Mapping of character set names to/from MIB enum values
+- UTF-8 and UTF-16 (host endian) support functions
+- Various simple data structures (resizeable buffer, stack, vector)
+- A UTF-8 input stream
+- Simple C API
+- Portable
 
 %package devel
 Summary:	libparserutils library headers
@@ -70,10 +59,12 @@ Statyczna biblioteka libparserutils.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__make} PREFIX=%{_prefix} COMPONENT_TYPE=lib-shared Q='' \
 	CFLAGS="%{rpmcflags} -Iinclude -Isrc" LDFLAGS="%{rpmldflags}"
+
 %if %{with static_libs}
 %{__make} PREFIX=%{_prefix} COMPONENT_TYPE=lib-static Q='' \
 	CFLAGS="%{rpmcflags} -Iinclude -Isrc" LDFLAGS="%{rpmldflags}"
@@ -81,19 +72,18 @@ Statyczna biblioteka libparserutils.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
+%{__make} install Q='' \
+	lib=%{_lib} \
 	PREFIX=%{_prefix} \
 	COMPONENT_TYPE=lib-shared \
-	Q=''
+	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with static_libs}
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
+%{__make} install Q='' \
+	lib=%{_lib} \
 	PREFIX=%{_prefix} \
 	COMPONENT_TYPE=lib-static \
-	Q=''
+	DESTDIR=$RPM_BUILD_ROOT
 %endif
 
 %clean
