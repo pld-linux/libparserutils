@@ -62,24 +62,30 @@ Statyczna biblioteka libparserutils.
 %patch0 -p1
 
 %build
-%{__make} PREFIX=%{_prefix} COMPONENT_TYPE=lib-shared Q='' \
-	CFLAGS="%{rpmcflags} -Iinclude -Isrc" LDFLAGS="%{rpmldflags}"
+export CC="%{__cc}"
+export CFLAGS="%{rpmcflags}"
+export LDFLAGS="%{rpmldflags}"
+
+%{__make} Q= \
+	PREFIX=%{_prefix} \
+	COMPONENT_TYPE=lib-shared
 
 %if %{with static_libs}
-%{__make} PREFIX=%{_prefix} COMPONENT_TYPE=lib-static Q='' \
-	CFLAGS="%{rpmcflags} -Iinclude -Isrc" LDFLAGS="%{rpmldflags}"
+%{__make} Q= \
+	PREFIX=%{_prefix} \
+	COMPONENT_TYPE=lib-static
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install Q='' \
+%{__make} install Q= \
 	lib=%{_lib} \
 	PREFIX=%{_prefix} \
 	COMPONENT_TYPE=lib-shared \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with static_libs}
-%{__make} install Q='' \
+%{__make} install Q= \
 	lib=%{_lib} \
 	PREFIX=%{_prefix} \
 	COMPONENT_TYPE=lib-static \
