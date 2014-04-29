@@ -4,15 +4,15 @@
 
 Summary:	Library for building efficient parsers
 Name:		libparserutils
-Version:	0.1.2
+Version:	0.2.0
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://download.netsurf-browser.org/libs/releases/%{name}-%{version}-src.tar.gz
-# Source0-md5:	11c2b4ff17406b57dcb718d4fad022bb
-Patch0:		lib.patch
+# Source0-md5:	3a52cff73006e9b7feb6dd23410373c2
+#Patch0:		lib.patch
 URL:		http://www.netsurf-browser.org/projects/libparserutils/
-BuildRequires:	netsurf-buildsystem
+BuildRequires:	netsurf-buildsystem >= 1.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -59,7 +59,7 @@ Statyczna biblioteka libparserutils.
 
 %prep
 %setup -q
-%patch0 -p1
+#%%patch0 -p1
 
 %build
 export CC="%{__cc}"
