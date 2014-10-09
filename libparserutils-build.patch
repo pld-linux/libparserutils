@@ -1,0 +1,14 @@
+--- libparserutils-0.2.0/Makefile~	2014-04-18 11:35:42.000000000 +0200
++++ libparserutils-0.2.0/Makefile	2014-10-09 08:23:51.426250318 +0200
+@@ -15,11 +15,6 @@
+ WARNFLAGS := -Wall -W -Wundef -Wpointer-arith -Wcast-align \
+ 	-Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes \
+ 	-Wmissing-declarations -Wnested-externs -pedantic
+-# BeOS/Haiku standard library headers create warnings.
+-ifneq ($(TARGET),beos)
+-  WARNFLAGS := $(WARNFLAGS) -Werror
+-endif
+-
+ CFLAGS := -D_BSD_SOURCE -I$(CURDIR)/include/ \
+ 	-I$(CURDIR)/src $(WARNFLAGS) $(CFLAGS)
+ ifneq ($(GCCVER),2)
