@@ -1,14 +1,13 @@
---- libparserutils-0.2.0/Makefile~	2014-04-18 11:35:42.000000000 +0200
-+++ libparserutils-0.2.0/Makefile	2014-10-09 08:23:51.426250318 +0200
-@@ -15,11 +15,6 @@
+--- libparserutils-0.2.1/Makefile.orig	2015-03-16 11:49:25.184170926 +0100
++++ libparserutils-0.2.1/Makefile	2015-03-16 11:49:37.534104020 +0100
+@@ -15,10 +15,6 @@ TESTRUNNER := $(PERL) $(NSTESTTOOLS)/tes
  WARNFLAGS := -Wall -W -Wundef -Wpointer-arith -Wcast-align \
  	-Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes \
  	-Wmissing-declarations -Wnested-externs -pedantic
 -# BeOS/Haiku standard library headers create warnings.
--ifneq ($(TARGET),beos)
+-ifneq ($(BUILD),i586-pc-haiku)
 -  WARNFLAGS := $(WARNFLAGS) -Werror
 -endif
--
+ 
  CFLAGS := -D_BSD_SOURCE -I$(CURDIR)/include/ \
  	-I$(CURDIR)/src $(WARNFLAGS) $(CFLAGS)
- ifneq ($(GCCVER),2)
