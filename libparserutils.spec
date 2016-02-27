@@ -5,15 +5,15 @@
 Summary:	Library for building efficient parsers
 Summary(pl.UTF-8):	Biblioteka do tworzenia wydajnych analizatorów
 Name:		libparserutils
-Version:	0.2.1
+Version:	0.2.3
 Release:	1
 License:	MIT
 Group:		Libraries
 Source0:	http://download.netsurf-browser.org/libs/releases/%{name}-%{version}-src.tar.gz
-# Source0-md5:	4690e29df753e6587c579ad8cba1e048
+# Source0-md5:	ad708b9892095a41efe76802a4636cbe
 Patch0:		%{name}-build.patch
 URL:		http://www.netsurf-browser.org/projects/libparserutils/
-BuildRequires:	netsurf-buildsystem >= 1.3
+BuildRequires:	netsurf-buildsystem >= 1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,12 +78,12 @@ Statyczna biblioteka libparserutils.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 export CC="%{__cc}"
 export CFLAGS="%{rpmcflags} %{rpmcppflags}"
 export LDFLAGS="%{rpmldflags}"
+export AR="%{__ar}"
 
 %{__make} \
 	Q= \
@@ -100,6 +100,11 @@ export LDFLAGS="%{rpmldflags}"
 %endif
 
 %install
+export CC="%{__cc}"
+export CFLAGS="%{rpmcflags} %{rpmcppflags}"
+export LDFLAGS="%{rpmldflags}"
+export AR="%{__ar}"
+
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	Q= \
