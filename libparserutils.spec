@@ -11,7 +11,6 @@ License:	MIT
 Group:		Libraries
 Source0:	http://download.netsurf-browser.org/libs/releases/%{name}-%{version}-src.tar.gz
 # Source0-md5:	ad708b9892095a41efe76802a4636cbe
-Patch0:		%{name}-build.patch
 URL:		http://www.netsurf-browser.org/projects/libparserutils/
 BuildRequires:	netsurf-buildsystem >= 1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
