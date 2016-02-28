@@ -99,12 +99,13 @@ export AR="%{__ar}"
 %endif
 
 %install
+rm -rf $RPM_BUILD_ROOT
+
 export CC="%{__cc}"
 export CFLAGS="%{rpmcflags} %{rpmcppflags}"
 export LDFLAGS="%{rpmldflags}"
 export AR="%{__ar}"
 
-rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	Q= \
 	PREFIX=%{_prefix} \
