@@ -13,6 +13,7 @@ Source0:	http://download.netsurf-browser.org/libs/releases/%{name}-%{version}-sr
 # Source0-md5:	c4ed7826b0686e8ab6515b552d2dcd30
 URL:		http://www.netsurf-browser.org/projects/libparserutils/
 BuildRequires:	netsurf-buildsystem >= 1.5
+BuildRequires:	perl-base
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
